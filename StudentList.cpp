@@ -17,22 +17,19 @@ struct Student {
 int main() {
   bool isRunning = true;
   int entries = 0;
+  int idDelete = 0;
   char input[24];
   vector<Student> students;
   vector<int>* vectorP;
   while(isRunning) {
-    char choice[6];
     cout << "ADD, DELETE, PRINT, or QUIT" << endl;
-    // cin.get(choice, 7);
-    cin.getline(choice, 6, '\n');
-    //cin.ignore(1, '\n');
-    if(strcmp(choice, "QUIT") == 0) {
+    cin.getline(input, 7, '\n');
+    if(strcmp(input, "QUIT") == 0) {
       isRunning = false;
     }
-    else if(strcmp(choice, "ADD") == 0) {
+    else if(strcmp(input, "ADD") == 0) {
       cout << "ADD" << endl;
       cout << "What is the first name of the student?" << endl;
-      cin.clear();
       cin.get(input, 25);
       cin.get();
       students.push_back(Student());
@@ -52,11 +49,26 @@ int main() {
       cin.ignore(255, '\n');
       entries++;
     }
-    else if(strcmp(choice, "DELETE") == 0) {
-      cout << "DELETE" << endl;
+    else if(strcmp(input, "DELETE") == 0) {
+       cout << "Enter the ID of the student you want to delete." << endl;
+       cin >> idDelete;
+       for(int i = 0; i < students.size(); i++) {
+	 if(students[i].id == idDelete) {
+	   students.erase(students.begin() + i);
+	   cout << "Entrie removed." << endl;
+	 }
+       }
+       cin.ignore(255, '\n');
     }
-    else if(strcmp(choice, "PRINT") == 0) {
-      cout << "PRINT" << endl;
+    else if(strcmp(input, "PRINT") == 0) {
+      for(int i = 0; i < students.size(); i++) {
+	cout << endl;
+	cout << "First name: " << students[i].fname << endl;
+	cout << "Last name: " << students[i].lname << endl;
+	cout << "Student ID: " << students[i].id << endl;
+	cout.precision(3);
+        cout << "GPA: " << students[i].gpa << endl; //emacs indentaion
+      }
     }
   }
   return 0;
