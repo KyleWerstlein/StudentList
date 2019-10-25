@@ -69,8 +69,8 @@ int main() {
 	cout << "First name: " << students[i].fname << endl;
 	cout << "Last name: " << students[i].lname << endl;
 	cout << "Student ID: " << students[i].id << endl;
-	cout.precision(3);
-        cout << "GPA: " << students[i].gpa << endl; //emacs indentaion
+	cout.precision(2);
+        cout << "GPA: " << fixed << students[i].gpa << endl; //emacs indentaion
       }
     }
   }
